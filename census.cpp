@@ -1,4 +1,5 @@
 #include "census.h"
+//kkk
 census::census(int id) {
 	//cout << "creat_census_id: "<<id << endl;
 }
