@@ -3,6 +3,7 @@
 #include <opencv2/opencv.hpp>
 #include "census.h"
 #include <vector>
+// this file include the disparity computer
 using namespace std;
 class dispart_estimate
 {
