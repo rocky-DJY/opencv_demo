@@ -6,6 +6,7 @@
 #include <opencv2/cudafilters.hpp>
 #include <opencv2/xfeatures2d/cuda.hpp>
 #include <opencv2/cudafeatures2d.hpp>
+// This file include the census and sift transform class
 using namespace std;
 class census
 {
@@ -22,8 +23,8 @@ private:
 class cost_sift {
 public:
 	cost_sift(int id);
-	void sift_transform(const cv::Mat img0, const cv::Mat img1, 
-		vector<float>& descriptor0, vector<float>& descriptor1);
+	void sift_transform(const cv::Mat img0, const cv::Mat img1,
+                        vector<vector<vector<float>>>& Desc0,vector<vector<vector<float>>>& Desc1);
 	~cost_sift();
 private:
 

@@ -61,7 +61,7 @@ cost_sift::~cost_sift() {
 	//delete the class's variable member
 }
 void cost_sift::sift_transform(const cv::Mat img0,const cv::Mat img1,
-							   vector<float>& descriptor0,vector<float>& descriptor1) 
+                               vector<vector<vector<float>>>& Desc0,vector<vector<vector<float>>>& Desc1)
 {
 	cv::cuda::GpuMat left_img;
 	cv::cuda::GpuMat right_img;
@@ -108,6 +108,7 @@ void cost_sift::sift_transform(const cv::Mat img0,const cv::Mat img1,
 	//keypt0.upload(key0);
 	//keypt1.upload(key1);
 	//描述子生成   gpu_mat (i,j)=(w,h)与普通mat相反
+    vector<float> descriptor0,descriptor1;
 	surf(left_img,  cv::cuda::GpuMat(), keypt0, desc0,true); //使用自定义的keypt
 	surf(right_img, cv::cuda::GpuMat(), keypt1, desc1,true); 
 	surf.downloadDescriptors(desc0, descriptor0);  // 下载描述子给vector
@@ -134,6 +135,8 @@ void cost_sift::sift_transform(const cv::Mat img0,const cv::Mat img1,
 		desc0_wh.push_back(desc0_point_row);
 		desc1_wh.push_back(desc1_point_row);
 	}
+	Desc0=desc0_wh;
+	Desc1=desc1_wh;
 	//cout << keypt0.size().width << endl;
 	//cout << desc0.size().width << endl;
 	cout << "descriptor generate" << endl;
