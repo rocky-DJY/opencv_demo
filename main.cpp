@@ -77,7 +77,7 @@ int main(int argc,char **argv) {
 			//  ”≤Óº∆À„ 
 			dispart_estimate disp_obj(image_ocv_undistort_left,image_ocv_undistort_right);
 			disp_obj.compute_disp(census_image_left, census_image_right);
-		
+		    cout<<"disp done"<<endl;
 			// Handle key event
 			key = cv::waitKey(10);
 

@@ -55,7 +55,7 @@ unsigned char census::census_hanming_dist(long long PL, long long PR) {
 	return number;
 }
 cost_sift::cost_sift(int id) {
-
+    // constructor
 }
 cost_sift::~cost_sift() {
 	//delete the class's variable member
@@ -95,11 +95,11 @@ void cost_sift::sift_transform(const cv::Mat img0,const cv::Mat img1,
 		for (int j = 0; j < img0.cols; j++) {
 			key0[point].pt.x = j;
 			key0[point].pt.y = i;
-			key0[point].size = 30;
+			key0[point].size = 40;
 			key0[point].octave = 0;
 			key1[point].pt.x = j;
 			key1[point].pt.y = i;
-			key1[point].size = 30;
+			key1[point].size = 40;
 			key1[point].octave = 0;
 			point++;
 		}
@@ -116,6 +116,8 @@ void cost_sift::sift_transform(const cv::Mat img0,const cv::Mat img1,
 	// cout << keypt0.size() << endl;
 	// 将64维向量按照w*h的分布储存
 	int index = 0;
+	int counter0=0;
+	int counter1=0;
 	vector<vector<vector<float>>> desc0_wh;   // w*h分布的点的向量
 	vector<vector<vector<float>>> desc1_wh;   // w*h分布的点的向量
 	for (int i = 0; i < img0_gray.rows; i++) { 
@@ -127,6 +129,10 @@ void cost_sift::sift_transform(const cv::Mat img0,const cv::Mat img1,
 			for (int m = 0; m <dim ; m++) {
 				desc0_point.push_back(descriptor0[index]);
 				desc1_point.push_back(descriptor0[index]);
+                if(isnan(descriptor0[index]))
+                    counter0++;
+                if(isnan(descriptor1[index]))
+                    counter1++;
 				index++;
 			}
 			desc0_point_row.push_back(desc0_point);
@@ -135,9 +141,11 @@ void cost_sift::sift_transform(const cv::Mat img0,const cv::Mat img1,
 		desc0_wh.push_back(desc0_point_row);
 		desc1_wh.push_back(desc1_point_row);
 	}
+	cout<<"counter0: "<<counter0<<endl;
+	cout<<"counter1: "<<counter1<<endl;
 	Desc0=desc0_wh;
 	Desc1=desc1_wh;
 	//cout << keypt0.size().width << endl;
 	//cout << desc0.size().width << endl;
-	cout << "descriptor generate" << endl;
+	//cout << "descriptor generate" << endl;
 }

@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
-set(CMAKE_BUILD_TYPE "Debug")
+set(CMAKE_BUILD_TYPE "Realese")
 set(CMAKE_CXX_STANDARD 20)
 project(opencv_demo)
 # find opencv head file and lib file
-set(CMAKE_PREFIX_PATH   /home/lab307/DJY/opencv3411/debug)
+set(CMAKE_PREFIX_PATH   /home/lab307/DJY/opencv3411/release)
 find_package(OpenCV REQUIRED)
 # find zed and cuda head file
 set(INC_DIR /usr/local/zed/include)
